@@ -1,8 +1,6 @@
 const { gql, ApolloServer } = require("apollo-server");
-//database
 let patients = [{ id: 1, name: "jhow", gender: "masc" }];
 
-// define types
 const typeDefs = gql`
   type Patient {
     id: ID!
@@ -22,7 +20,6 @@ const typeDefs = gql`
   }
 `;
 
-//define resolvers
 const resolvers = {
   Query: {
     patients: () => patients,
@@ -50,8 +47,6 @@ const resolvers = {
   },
 };
 
-//create server
 const app = new ApolloServer({ typeDefs, resolvers });
 
-//run server
 app.listen();

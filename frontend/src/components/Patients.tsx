@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const PatientsQuery = gql`
-  query ExampleQuery {
+  query getPatients {
     patients {
       id
       name
