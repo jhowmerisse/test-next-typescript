@@ -1,48 +1,48 @@
 const { gql, ApolloServer } = require("apollo-server");
-let patients = [{ id: 1, name: "jhow", gender: "masc" }];
+let users = [{ id: 1, name: "jhow", gender: "masc" }];
 
 const typeDefs = gql`
-  type Patient {
+  type User {
     id: ID!
     name: String!
     gender: String
   }
 
   type Query {
-    patients: [Patient]
-    patient(id: ID!): Patient
+    users: [User]
+    user(id: ID!): User
   }
 
   type Mutation {
-    create(id: ID!, name: String!, gender: String!): Patient
+    create(id: ID!, name: String!, gender: String!): User
     delete(id: ID!): Boolean
-    update(id: ID!, name: String, gender: String): Patient
+    update(id: ID!, name: String, gender: String): User
   }
 `;
 
 const resolvers = {
   Query: {
-    patients: () => patients,
-    patient: (_, { id }) => patients.find((patient) => patient.id === id),
+    users: () => users,
+    user: (_, { id }) => users.find((user) => user.id === id),
   },
   Mutation: {
     create: (_, id, name, gender) => {
-      const patient = { id, name, gender };
+      const user = { id, name, gender };
 
-      patients.push(patient);
+      users.push(user);
 
-      return patient;
+      return user;
     },
     delete: (_, { id }) => {
-      const filteredPatients = patients.filter((patient) => patient.id !== id);
-      patients = filteredPatients;
+      const filteredUsers = users.filter((user) => user.id !== id);
+      users = filteredUsers;
       return true;
     },
     update: (_, { id, name, gender }) => {
-      const patient = patients.find((patient) => patient.id === id);
-      patient.id = patient.id;
-      patient.name = name ? name : patient.name;
-      patient.gender = gender ? gender : patient.gender;
+      const user = users.find((user) => user.id === id);
+      user.id = user.id;
+      user.name = name ? name : user.name;
+      user.gender = gender ? gender : user.gender;
     },
   },
 };

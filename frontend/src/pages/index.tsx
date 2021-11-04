@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Patients from '../components/Patients';
+import Users from '../components/Users';
 
 const Home: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const Home: React.FC = () => {
       </Head>
 
       <main>
-        <Patients />
+        <Users />
       </main>
 
       <footer>
